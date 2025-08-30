@@ -16,6 +16,7 @@ const problem=require("./models/problem_schema")
 const videoRouter = require("./routes/videoCreator");
 const discussion_router =require("./routes/discusion")
 const constest_router=require("./routes/contest")
+const path=require("path");
 
 const serviceAccount=JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 app.use(express.json());
