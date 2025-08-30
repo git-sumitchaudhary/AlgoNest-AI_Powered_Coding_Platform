@@ -34,7 +34,7 @@ const pairmode_routes=require("./routes/pairMode");
 
 
 app.use(cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173","https://algonest-ai-powered-coding-platform-71lg.onrender.com"],
     credentials:true
 }))
 
