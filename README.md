@@ -141,7 +141,7 @@ npm install
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/algonest
+MONGO_URL=mongodb://localhost:27017/algonest
 JWT_SECRET=your_jwt_secret_key
 GEMINI_KEY=your_google_gemini_api_key
 CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
