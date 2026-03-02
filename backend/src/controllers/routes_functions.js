@@ -12,6 +12,9 @@ const validate = require("../utils/validate")
 
 let email_varification = async (req, res) => {
 
+    console.log(process.env.SMTP_EMAIL);
+    console.log(process.env.SMTP_PASS);
+
     try {
 
         const { email_id } = req.body;
