@@ -15,7 +15,7 @@ const analyze_complexity_function = async (req, res) => {
         const genAI = new GoogleGenerativeAI(key);
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.0-flash", // change to "gemini-2.5" only if supported
+            model: "gemini-2.5-flash", // change to "gemini-2.5" only if supported
             systemInstruction: `You are an expert AI assistant specializing in Time and Space Complexity (TSC) analysis of algorithms. Your sole purpose is to analyze user-submitted code and provide a clear, accurate, and well-formatted breakdown of its Big-O complexity.
 
 ## CORE TASK
