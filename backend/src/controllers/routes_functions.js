@@ -36,6 +36,7 @@ let email_varification = async (req, res) => {
         await redisclient.set(`otp:${email_id}`, otp, {
             EX: 300,
         });
+        console.log("Redis status:", redisclient.isReady);
 
 
         await transporter.sendMail({
