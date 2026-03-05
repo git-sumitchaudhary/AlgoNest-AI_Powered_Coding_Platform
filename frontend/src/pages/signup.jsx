@@ -129,8 +129,12 @@ function Signup() {
         <div className="relative flex py-5 items-center">
           <div className="flex-grow border-t border-gray-700"></div>
           <span className="flex-shrink mx-4 text-xs text-gray-500 font-semibold uppercase">Or with email</span>
+           
           <div className="flex-grow border-t border-gray-700"></div>
         </div>
+        <p className="text-yellow-400 text-sm text-center mb-4">
+          ⚠️ OTP service is temporarily unavailable. Please sign up using Google or GitHub.
+        </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
