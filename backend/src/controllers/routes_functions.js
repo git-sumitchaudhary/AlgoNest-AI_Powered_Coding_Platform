@@ -21,6 +21,9 @@ let email_varification = async (req, res) => {
         if (!email_id) return res.status(400).json({ error: "Missing email_id" });
 
         const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
             service: "gmail",
             auth: {
                 user: process.env.SMTP_EMAIL,
