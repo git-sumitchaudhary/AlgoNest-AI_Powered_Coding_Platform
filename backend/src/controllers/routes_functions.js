@@ -7,7 +7,7 @@ const redisclient = require("../config/redisdatabase")
 const nodemailer = require("nodemailer")
 const otp_generator = require("otp-generator")
 const admin = require("firebase-admin")
-const Resend = require("resend")
+const { Resend } = require("resend")
 const validate = require("../utils/validate")
 
 let email_varification = async (req, res) => {
