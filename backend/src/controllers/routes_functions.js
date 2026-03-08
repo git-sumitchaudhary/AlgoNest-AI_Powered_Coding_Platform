@@ -60,6 +60,7 @@ let email_varification = async (req, res) => {
     }
     catch (err) {
         res.status(500).send({ error: err.message || "Something went wrong" });
+        console.error("MAIL ERROR:", err);
     }
 }
 
