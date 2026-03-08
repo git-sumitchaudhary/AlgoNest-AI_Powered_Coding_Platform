@@ -7,26 +7,25 @@ const redisclient = require("../config/redisdatabase")
 const nodemailer = require("nodemailer")
 const otp_generator = require("otp-generator")
 const admin = require("firebase-admin")
-
+const Resend = require("resend")
 const validate = require("../utils/validate")
 
 let email_varification = async (req, res) => {
 
-    console.log(process.env.SMTP_EMAIL);
-    console.log(process.env.SMTP_PASS);
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     try {
 
         const { email_id } = req.body;
         if (!email_id) return res.status(400).json({ error: "Missing email_id" });
 
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: process.env.SMTP_EMAIL,
-                pass: process.env.SMTP_PASS,
-            },
-        });
+        // const transporter = nodemailer.createTransport({
+        //     service: "gmail",
+        //     auth: {
+        //         user: process.env.SMTP_EMAIL,
+        //         pass: process.env.SMTP_PASS,
+        //     },
+        // });
         let otp = otp_generator.generate(6, {
             upperCaseAlphabets: false,
             lowerCaseAlphabets: false,
@@ -39,19 +38,18 @@ let email_varification = async (req, res) => {
         console.log("Redis status:", redisclient.isReady);
 
 
-        await transporter.sendMail({
-            from: process.env.SMTP_EMAIL,
-            to: req.body.email_id,
-            subject: "Your AlgoNest SignUp OTP",
-            html:
-                `
-        <div style="font-family:sans-serif; padding:10px; color:#333">
-          <h2>Your OTP is: <span style="color:#3b82f6">${otp}</span></h2>
-          <p>This OTP is valid for <strong>5 minutes</strong>. Do not share it with anyone.</p>
-          <br />
-          <p>– Team AlgoNest</p>
-        </div>
-      `,
+        await resend.emails.send({
+          from: "AlgoNest <noreply@algonest.com>", 
+          to: req.body.email_id,
+          subject: "Your AlgoNest SignUp OTP",
+          html: `
+            <div style="font-family:sans-serif; padding:10px; color:#333">
+              <h2>Your OTP is: <span style="color:#3b82f6">${otp}</span></h2>
+              <p>This OTP is valid for <strong>5 minutes</strong>. Do not share it with anyone.</p>
+              <br />
+              <p>– Team AlgoNest</p>
+            </div>
+          `,
         });
 
 
